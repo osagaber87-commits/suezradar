@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: suez-news-radar
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: REFRESH_MINUTES
+        value: "5"
+      - key: LOOKBACK_DAYS
+        value: "30"

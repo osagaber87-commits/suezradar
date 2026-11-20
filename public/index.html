@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a1f30" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="رادار السويس" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <meta name="description" content="رادار السويس: متابعة آلية لأحدث أخبار محافظة السويس ومحافظ السويس اللواء هاني رشاد من الصحف المصرية، مع الصور والمصادر." />
+  <title>رادار السويس | مركز المتابعة الإخبارية</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="top-accent" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand" aria-label="رادار السويس - الصفحة الرئيسية">
+        <span class="brand-logo"><svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="12" stroke="currentColor" opacity=".4"/><circle cx="16" cy="16" r="7" stroke="currentColor" opacity=".65"/><circle cx="16" cy="16" r="2.8" fill="currentColor"/><path d="M16 16L26 5" stroke="#62ddbf" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+        <span class="brand-titles"><strong>رادار السويس</strong><small>SUEZ NEWS RADAR</small></span>
+      </a>
+      <nav class="header-links" aria-label="التنقل الرئيسي">
+        <a href="#latest" class="active">آخر الأخبار</a>
+        <a href="#sources">المصادر</a>
+        <a href="#about">عن المنصة</a>
+      </nav>
+      <div class="header-meta">
+        <span class="today-date" id="todayDate"></span>
+        <span class="vertical-line"></span>
+        <span class="live-chip"><span class="live-dot"></span> رصد مباشر</span>
+        <button id="installBtn" type="button" class="install-btn" aria-label="تثبيت رادار السويس على الموبايل">⬇ تثبيت التطبيق</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-shell">
+      <div class="container">
+        <div class="hero">
+          <div class="hero-art" aria-hidden="true"><div class="orbit orbit-1"></div><div class="orbit orbit-2"></div><div class="orbit orbit-3"></div><div class="orbit orbit-4"></div><span class="radar-pin pin-one"></span><span class="radar-pin pin-two"></span><span class="radar-pin pin-three"></span><div class="radar-beam"></div></div>
+          <div class="hero-content">
+            <div class="eyebrow"><span class="small-line"></span> منصة الرصد الإعلامي لمحافظة السويس</div>
+            <h1>كل أخبار <em>السويس</em><br/>في مكان واحد.</h1>
+            <p>متابعة مستمرة لما تنشره الصحف والمواقع المصرية عن محافظة السويس، ومحافظ السويس اللواء هاني رشاد، مع رابط الخبر الأصلي وصورته متى توفرت.</p>
+            <div class="hero-bottom">
+              <span class="hero-live"><i></i> تحديث آلي كل 5 دقائق</span>
+              <span class="hero-sep"></span>
+              <span id="heroSourceCount">مصادر مصرية متعددة</span>
+            </div>
+          </div>
+          <div class="hero-counter" aria-label="ملخص التغطية">
+            <span class="counter-label">الأخبار المرصودة</span>
+            <strong id="heroTotal">—</strong>
+            <span class="counter-detail"><span class="counter-signal"></span> خلال فترة البحث المحددة</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container page-layout">
+      <div class="content-column" id="latest">
+        <section class="latest-header">
+          <div class="section-kicker">THE NEWSROOM <span>—</span> غرفة الأخبار</div>
+          <div class="heading-row">
+            <div><h2>آخر الأخبار والتغطيات</h2><p>تصفح الأخبار المرتبطة بالسويس مرتبة من الأحدث للأقدم</p></div>
+            <div class="refresh-area"><span id="refreshInfo" class="refresh-label">جارٍ الاتصال بالمصادر...</span><button type="button" id="refreshBtn" class="refresh-btn" aria-label="تحديث الأخبار الآن"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 11a8 8 0 1 0-2.4 6"/><path d="M20 4v7h-7"/></svg> تحديث الآن</button></div>
+          </div>
+        </section>
+        <section class="filters-panel" aria-label="خيارات تصفية الأخبار">
+          <div class="topic-tabs" role="tablist" aria-label="تصنيف الأخبار">
+            <button type="button" class="topic-tab active" data-topic="all" aria-selected="true">جميع الأخبار <span id="allCount" class="tab-number">—</span></button>
+            <button type="button" class="topic-tab" data-topic="suez" aria-selected="false">أخبار السويس</button>
+            <button type="button" class="topic-tab" data-topic="governor" aria-selected="false">محافظ السويس وهاني رشاد</button>
+            <button type="button" class="topic-tab" data-topic="saved" aria-selected="false">المحفوظات <span id="savedCount" class="tab-number">0</span></button>
+          </div>
+          <div class="filters-row">
+            <label class="search-field"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><input id="searchInput" type="search" autocomplete="off" placeholder="ابحث في عناوين الأخبار..." aria-label="بحث في الأخبار" /></label>
+            <div class="filter-select-wrap"><select id="sourceSelect" aria-label="اختيار المصدر الإخباري"><option value="all">كل المصادر الإخبارية</option></select><span class="select-caret">⌄</span></div>
+            <div class="filter-select-wrap date-filter"><select id="periodSelect" aria-label="الفترة الزمنية"><option value="all">آخر 30 يومًا</option><option value="1">آخر 24 ساعة</option><option value="3">آخر 3 أيام</option><option value="7">آخر 7 أيام</option><option value="14">آخر 14 يومًا</option></select><span class="select-caret">⌄</span></div>
+            <label class="photo-filter"><input id="photoOnly" type="checkbox" /> عرض الأخبار المصوّرة فقط</label>
+          </div>
+        </section>
+        <div id="alertBox" class="alert-box" hidden></div>
+        <div class="news-meta-line"><span id="resultCount">جارٍ تحميل النتائج</span><span class="sort-indicator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 20V4M3 8l4-4 4 4M17 4v16m-4-4 4 4 4-4"/></svg> الأحدث أولًا</span></div>
+        <div id="newsList" class="news-list" aria-live="polite"><div class="skeleton-card"><div class="skeleton-image"></div><div class="skeleton-copy"><div></div><div></div><div></div><div></div></div></div><div class="skeleton-card"><div class="skeleton-image"></div><div class="skeleton-copy"><div></div><div></div><div></div><div></div></div></div></div>
+        <div class="load-more-area"><button type="button" id="loadMore" class="load-more" hidden>عرض المزيد من الأخبار <span>↓</span></button></div>
+      </div>
+
+      <aside class="sidebar" aria-label="ملخص متابعة الأخبار">
+        <section class="sidebar-card tracking-card">
+          <div class="sidebar-title"><span class="sidebar-icon mint">◉</span><h3>موجز الرصد</h3><span class="tiny-live">LIVE</span></div>
+          <div class="stats-grid"><div class="stat"><small>إجمالي الأخبار</small><strong id="statTotal">—</strong><span>خبر مرصود</span></div><div class="stat"><small>المصادر المتابعة</small><strong id="statSources">—</strong><span>موقع إخباري</span></div></div>
+          <div class="sidebar-data"><span>آخر عملية تحديث</span><strong id="lastUpdated">لم يتم بعد</strong></div>
+          <div class="sidebar-data"><span>حالة الاتصال</span><strong id="connectionStatus" class="status-wait">جارٍ الاتصال...</strong></div>
+        </section>
+        <section class="sidebar-card keywords-card">
+          <div class="sidebar-title"><span class="sidebar-icon peach">⌕</span><h3>الكلمات قيد المتابعة</h3></div>
+          <p class="sidebar-desc">يتم جمع الأخبار المرتبطة بهذه الكلمات والتعبيرات تلقائيًا.</p>
+          <div class="keywords"><span>السويس</span><span>محافظة السويس</span><span>محافظ السويس</span><span>اللواء هاني رشاد</span><span>اللواء هانى رشاد</span></div>
+        </section>
+        <section class="sidebar-card sources-card" id="sources">
+          <div class="sidebar-title"><span class="sidebar-icon blue">▤</span><h3>المصادر الإخبارية</h3></div>
+          <p class="sidebar-desc">مواقع مصرية يتم البحث فيها عن كل ما يخص السويس.</p>
+          <div id="sourceList" class="source-list"><div class="source-loading">جارٍ تحميل قائمة المصادر...</div></div>
+          <p class="source-footnote">قد لا تظهر بعض المواقع في كل تحديث إذا لم تنشر أخبارًا مطابقة أو تعذّر الوصول إلى خلاصتها.</p>
+        </section>
+        <section class="sidebar-footer" id="about"><strong>عن رادار السويس</strong><p>منصة تجميع عناوين ومقتطفات إخبارية، مع نسب المحتوى للصحيفة الأصلية. ليست جهة حكومية أو صحيفة مستقلة.</p><span>جميع حقوق الأخبار والصور محفوظة لناشريها.</span></section>
+      </aside>
+    </div>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><div class="footer-brand"><span class="footer-dot"></span> رادار السويس <span class="footer-muted">| رصد الأخبار المصرية</span></div><p>الأخبار من مصادرها الأصلية · التغطية ليست مضمونة الشمول أو الفورية</p><span>© <span id="year"></span></span></div></footer>
+  <dialog id="installDialog" class="install-dialog" dir="rtl" aria-labelledby="installHeading">
+    <h2 id="installHeading">تثبيت رادار السويس على الموبايل</h2>
+    <p><strong>أندرويد (Chrome):</strong> افتح رابط الموقع الآمن (HTTPS)، ثم اضغط ⋮ واختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».</p>
+    <p><strong>آيفون (Safari):</strong> اضغط زر المشاركة ثم «إضافة إلى الشاشة الرئيسية» واضغط «إضافة».</p>
+    <p class="install-hint">الأخبار الحديثة تحتاج اتصال إنترنت وخادم الموقع يعمل على الاستضافة. عند انقطاع الاتصال قد تُعرض آخر أخبار تم حفظها في الجهاز.</p>
+    <button id="installClose" class="install-close" type="button">فهمت</button>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
